@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class UserProfile extends StatelessWidget {
-  static const List<MenuRowData> firstMenuRow = [
+  final List<MenuRowData> firstMenuRow = [
     MenuRowData(Icons.bookmark_outline, 'Избранное'),
     MenuRowData(Icons.call_outlined, 'Недавние звонки'),
     MenuRowData(Icons.computer_outlined, 'Устройства'),
     MenuRowData(Icons.folder_outlined, 'Папка с чатами'),
   ];
 
-  static const List<MenuRowData> secondMenuRow = [
+  final List<MenuRowData> secondMenuRow = [
     MenuRowData(Icons.notifications_outlined, 'Уведомления и звуки'),
     MenuRowData(Icons.lock_outline, 'Конфиденциальность'),
     MenuRowData(Icons.dataset_outlined, 'Данные и память'),
@@ -16,7 +16,7 @@ class UserProfile extends StatelessWidget {
     MenuRowData(Icons.language_outlined, 'Язык'),
   ];
 
-  const UserProfile();
+  UserProfile();
 
   @override
   Widget build(BuildContext context) {
@@ -76,9 +76,9 @@ class _MenuWidgetRow extends StatelessWidget {
   final MenuRowData data;
 
   const _MenuWidgetRow({
-    super.key,
+    Key? key,
     required this.data,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -93,9 +93,8 @@ class _MenuWidgetRow extends StatelessWidget {
         children: [
           Icon(data.icon),
           SizedBox(width: 15),
-          Expanded(
-            child: Text(data.text),
-          ),
+          Text(data.text),
+          Spacer(),
           Icon(Icons.chevron_right),
         ],
       ),
@@ -104,7 +103,7 @@ class _MenuWidgetRow extends StatelessWidget {
 }
 
 class _UserInfo extends StatelessWidget {
-  const _UserInfo({super.key});
+  const _UserInfo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -129,9 +128,7 @@ class _UserInfo extends StatelessWidget {
 }
 
 class _UserNickNameWidget extends StatelessWidget {
-  const _UserNickNameWidget({
-    super.key,
-  });
+  const _UserNickNameWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -146,9 +143,7 @@ class _UserNickNameWidget extends StatelessWidget {
 }
 
 class _UserPhoneWidget extends StatelessWidget {
-  const _UserPhoneWidget({
-    super.key,
-  });
+  const _UserPhoneWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -163,9 +158,7 @@ class _UserPhoneWidget extends StatelessWidget {
 }
 
 class _UserNameWidget extends StatelessWidget {
-  const _UserNameWidget({
-    super.key,
-  });
+  const _UserNameWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -183,9 +176,7 @@ class _UserNameWidget extends StatelessWidget {
 }
 
 class _AvatarWidget extends StatelessWidget {
-  const _AvatarWidget({
-    super.key,
-  });
+  const _AvatarWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
