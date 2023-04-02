@@ -16,28 +16,38 @@ class UserProfile extends StatelessWidget {
     MenuRowData(Icons.language_outlined, 'Язык'),
   ];
 
+  final List<MenuRowData> thirdMenuRow = [
+    MenuRowData(Icons.star_border_purple500_outlined, 'Telegram Premium'),
+  ];
+
+  final List<MenuRowData> fourthMenuRow = [
+    MenuRowData(Icons.question_answer_outlined, 'Помощь'),
+    MenuRowData(Icons.help_outline_outlined, 'Вопросы о Telegram'),
+  ];
+
   UserProfile();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: Colors.grey[300],
       appBar: AppBar(
         title: Text('Настройки'),
         centerTitle: true,
       ),
       body: Container(
         width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          verticalDirection: VerticalDirection.down,
+        child: ListView(
           children: [
             _UserInfo(),
             SizedBox(height: 20),
             _MenuWidget(menuRow: firstMenuRow),
             SizedBox(height: 20),
             _MenuWidget(menuRow: secondMenuRow),
+            SizedBox(height: 20),
+            _MenuWidget(menuRow: thirdMenuRow),
+            SizedBox(height: 20),
+            _MenuWidget(menuRow: fourthMenuRow),
           ],
         ),
       ),
@@ -107,22 +117,37 @@ class _UserInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      width: double.infinity,
-      child: Column(
-        children: [
-          SizedBox(height: 20),
-          _AvatarWidget(),
-          SizedBox(height: 20),
-          _UserNameWidget(),
-          SizedBox(height: 5),
-          _UserPhoneWidget(),
-          SizedBox(height: 5),
-          _UserNickNameWidget(),
-          SizedBox(height: 20),
-        ],
-      ),
+    return Stack(
+      children: [
+        Container(
+          color: Colors.white,
+          width: double.infinity,
+          child: Column(
+            children: [
+              SizedBox(height: 20),
+              _AvatarWidget(),
+              SizedBox(height: 20),
+              _UserNameWidget(),
+              SizedBox(height: 5),
+              _UserPhoneWidget(),
+              SizedBox(height: 5),
+              _UserNickNameWidget(),
+              SizedBox(height: 20),
+            ],
+          ),
+        ),
+        Positioned(
+          top: 20,
+          right: 20,
+          child: Text(
+            'Изм.',
+            style: TextStyle(
+              fontSize: 17,
+              color: Colors.blue,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
