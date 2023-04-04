@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../theme/app_button_style.dart';
+import '/widgets/main_screen/main_screen_widget.dart';
+import '/theme/app_button_style.dart';
 
 class AuthWidget extends StatefulWidget {
   const AuthWidget({super.key});
@@ -104,7 +105,16 @@ class __FormWidgetState extends State<_FormWidget> {
 
     if (login == 'admin' && password == 'admin') {
       errorText = null;
-      print('open app');
+
+      // Navigator.of(context).pushNamed('/main_screen');
+      Navigator.of(context).pushReplacementNamed('/main_screen');
+
+      // final navigator = Navigator.of(context);
+      // navigator.push(
+      //   MaterialPageRoute<void>(
+      //     builder: (context) => MainScreenWidget(),
+      //   ),
+      // );
     } else {
       errorText = 'Неверный логин или пароль';
       print('show error');
