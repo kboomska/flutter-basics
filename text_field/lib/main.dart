@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'widgets/input_decoration_example.dart';
 import 'widgets/properties_example.dart';
+import 'widgets/control_example.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: PropertiesExample(),
+        body: ControlExample(),
       ),
     );
   }
