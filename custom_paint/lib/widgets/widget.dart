@@ -11,11 +11,6 @@ class Example extends StatelessWidget {
       child: Container(
         width: 100,
         height: 100,
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.red,
-          ),
-        ),
         child: const RadialPercentWidget(
           percent: 0.68,
           fillColor: Colors.blue,
@@ -81,10 +76,6 @@ class RadialPercentWidget extends StatelessWidget {
 }
 
 class MyPainter extends CustomPainter {
-  // final double percent = 0.68;
-  // final double strokeWidth = 7;
-  // final double strokePadding = 5;
-
   final double percent;
   final Color fillColor;
   final Color lineColor;
@@ -103,86 +94,57 @@ class MyPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final backgroudPaint = Paint();
-    backgroudPaint.color = fillColor;
-    backgroudPaint.style = PaintingStyle.fill;
-    // canvas.drawCircle(
-    //   Offset(
-    //     size.width / 2,
-    //     size.height / 2,
-    //   ),
-    //   size.width / 2,
-    //   paint,
-    // );
-    canvas.drawOval(Offset.zero & size, backgroudPaint);
+    final arcRect = calculateArcRect(size);
 
-    final freePaint = Paint();
-    freePaint.color = freeColor;
-    freePaint.style = PaintingStyle.stroke;
-    freePaint.strokeWidth = lineWidth;
-    canvas.drawArc(
-      Offset(linePadding + (lineWidth / 2), linePadding + (lineWidth / 2)) &
-          Size(
-            size.width - (lineWidth + 2 * linePadding),
-            size.height - (lineWidth + 2 * linePadding),
-          ),
-      2 * pi * percent - (pi / 2),
-      2 * pi * (1 - percent),
-      false,
-      freePaint,
-    );
+    drawBackground(canvas, size);
+    drawFreeArc(canvas, arcRect);
+    drawFillArc(canvas, arcRect);
+  }
 
-    final fillPaint = Paint();
-    fillPaint.color = lineColor;
-    fillPaint.style = PaintingStyle.stroke;
-    fillPaint.strokeWidth = lineWidth;
-    fillPaint.strokeCap = StrokeCap.round;
+  void drawFillArc(Canvas canvas, Rect arcRect) {
+    final paint = Paint();
+    paint.color = lineColor;
+    paint.style = PaintingStyle.stroke;
+    paint.strokeWidth = lineWidth;
+    paint.strokeCap = StrokeCap.round;
     canvas.drawArc(
-      Offset(linePadding + (lineWidth / 2), linePadding + (lineWidth / 2)) &
-          Size(
-            size.width - (lineWidth + 2 * linePadding),
-            size.height - (lineWidth + 2 * linePadding),
-          ),
+      arcRect,
       -pi / 2,
       2 * pi * percent,
       false,
-      fillPaint,
+      paint,
     );
   }
 
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true;
+  void drawFreeArc(Canvas canvas, Rect arcRect) {
+    final paint = Paint();
+    paint.color = freeColor;
+    paint.style = PaintingStyle.stroke;
+    paint.strokeWidth = lineWidth;
+    canvas.drawArc(
+      arcRect,
+      2 * pi * percent - (pi / 2),
+      2 * pi * (1 - percent),
+      false,
+      paint,
+    );
   }
-}
 
-/*
-class MyPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final circle = Paint();
-    final rect = Paint();
-    final line = Paint();
+  void drawBackground(Canvas canvas, Size size) {
+    final paint = Paint();
+    paint.color = fillColor;
+    paint.style = PaintingStyle.fill;
+    canvas.drawOval(Offset.zero & size, paint);
+  }
 
-    final double dx = size.width / 2;
-    final double dy = size.height / 2;
-
-    circle.color = Colors.green;
-    circle.style = PaintingStyle.stroke;
-    circle.strokeWidth = 3;
-
-    rect.color = Colors.purple;
-    // rect.style = PaintingStyle.fill;
-    rect.style = PaintingStyle.stroke;
-    rect.strokeWidth = 10;
-
-    line.color = Colors.blue;
-    line.strokeWidth = 5;
-
-    canvas.drawCircle(Offset(dx, dy), dx, circle);
-    // canvas.drawRect(Offset.zero & Size(30, 30), rect);
-    canvas.drawRect(const Offset(5, 5) & const Size(30, 30), rect);
-    canvas.drawLine(Offset.zero, Offset(dx, dy), line);
+  Rect calculateArcRect(Size size) {
+    final offset = (lineWidth / 2) + linePadding;
+    final arcRect = Offset(offset, offset) &
+        Size(
+          size.width - 2 * offset,
+          size.height - 2 * offset,
+        );
+    return arcRect;
   }
 
   @override
@@ -190,4 +152,3 @@ class MyPainter extends CustomPainter {
     return true;
   }
 }
-*/
