@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:themoviedb/resources/resources.dart';
 
 class Movie {
+  final int id;
   final String imageName;
   final String title;
   final String time;
   final String description;
 
   Movie({
+    required this.id,
     required this.imageName,
     required this.title,
     required this.time,
@@ -25,6 +27,7 @@ class MovieListWidget extends StatefulWidget {
 class _MovieListWidgetState extends State<MovieListWidget> {
   final _movies = [
     Movie(
+      id: 1,
       imageName: AppImages.moviePlaceholder,
       title: 'Джон Уик 3',
       time: 'May 16, 2019',
@@ -32,6 +35,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
           'Киллер-изгой бежит от байкеров-самураев и других неприятностей.',
     ),
     Movie(
+      id: 2,
       imageName: AppImages.moviePlaceholder,
       title: 'Оружейный барон',
       time: 'May 16, 2019',
@@ -39,6 +43,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
           'Киллер-изгой бежит от байкеров-самураев и других неприятностей.',
     ),
     Movie(
+      id: 3,
       imageName: AppImages.moviePlaceholder,
       title: 'Достучаться до небес',
       time: 'May 16, 2019',
@@ -46,6 +51,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
           'Киллер-изгой бежит от байкеров-самураев и других неприятностей.',
     ),
     Movie(
+      id: 4,
       imageName: AppImages.moviePlaceholder,
       title: 'Бойцовский клуб',
       time: 'May 16, 2019',
@@ -53,6 +59,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
           'Киллер-изгой бежит от байкеров-самураев и других неприятностей.',
     ),
     Movie(
+      id: 5,
       imageName: AppImages.moviePlaceholder,
       title: 'Настоящий детектив',
       time: 'May 16, 2019',
@@ -60,6 +67,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
           'Киллер-изгой бежит от байкеров-самураев и других неприятностей.',
     ),
     Movie(
+      id: 6,
       imageName: AppImages.moviePlaceholder,
       title: 'Джентельмены',
       time: 'May 16, 2019',
@@ -67,6 +75,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
           'Киллер-изгой бежит от байкеров-самураев и других неприятностей.',
     ),
     Movie(
+      id: 7,
       imageName: AppImages.moviePlaceholder,
       title: 'Криминальное чтиво',
       time: 'May 16, 2019',
@@ -74,6 +83,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
           'Киллер-изгой бежит от байкеров-самураев и других неприятностей.',
     ),
     Movie(
+      id: 8,
       imageName: AppImages.moviePlaceholder,
       title: 'Человек дождя',
       time: 'May 16, 2019',
@@ -81,6 +91,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
           'Киллер-изгой бежит от байкеров-самураев и других неприятностей.',
     ),
     Movie(
+      id: 9,
       imageName: AppImages.moviePlaceholder,
       title: 'Форрест Гамп',
       time: 'May 16, 2019',
@@ -88,6 +99,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
           'Киллер-изгой бежит от байкеров-самураев и других неприятностей.',
     ),
     Movie(
+      id: 10,
       imageName: AppImages.moviePlaceholder,
       title: 'Зеленая книга',
       time: 'May 16, 2019',
@@ -117,6 +129,14 @@ class _MovieListWidgetState extends State<MovieListWidget> {
     super.initState();
     _filteredMovies = _movies;
     _searchController.addListener(_searchMovies);
+  }
+
+  void _onMovieTap(int index) {
+    final id = _movies[index].id;
+    Navigator.of(context).pushNamed(
+      '/main_screen/movie_details',
+      arguments: id,
+    );
   }
 
   @override
@@ -210,9 +230,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
                     color: Colors.transparent,
                     child: InkWell(
                       borderRadius: BorderRadius.circular(10),
-                      onTap: () {
-                        print('Tap on movie card');
-                      },
+                      onTap: () => _onMovieTap(index),
                     ),
                   ),
                 ],
