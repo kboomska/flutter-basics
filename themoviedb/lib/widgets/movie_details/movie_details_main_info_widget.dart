@@ -35,7 +35,7 @@ class MovieDetailsMainInfoWidget extends StatelessWidget {
 
   Text _DescriptionWidget() {
     return const Text(
-      'Суперкиллер Джон Уик после нарушения кодекса тайной гильдии ассасинов получает статус изгоя — экскомьюникадо. За его голову назначена цена в 14 миллионов долларов, и армия самых жестоких профессиональных убийц со всего мира открывает на него кровавую охоту.',
+      'Super-assassin John Wick returns with a \$14 million price tag on his head and an army of bounty-hunting killers on his trail. After killing a member of the shadowy international assassin’s guild, the High Table, John Wick is excommunicado, but the world\'s most ruthless hit men and women await his every turn.',
       maxLines: 3,
       overflow: TextOverflow.ellipsis,
       textAlign: TextAlign.start,
@@ -97,7 +97,7 @@ class _MovieNameWidget extends StatelessWidget {
       text: const TextSpan(
         children: [
           TextSpan(
-            text: 'Джон Уик 3',
+            text: 'John Wick: Chapter 3 - Parabellum',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -132,14 +132,14 @@ class _ScoreWidget extends StatelessWidget {
                 width: 40,
                 height: 40,
                 child: RadialPercentWidget(
-                  percent: 0.68,
+                  percent: 0.74,
                   fillColor: Color.fromARGB(255, 10, 23, 25),
                   lineColor: Color.fromARGB(255, 37, 203, 103),
                   freeColor: Color.fromARGB(255, 25, 54, 31),
                   lineWidth: 3,
                   linePadding: 2,
                   child: Text(
-                    '68%',
+                    '74%',
                     style: TextStyle(
                       fontSize: 14,
                       color: Colors.white,
@@ -196,7 +196,7 @@ class _SummaryWidget extends StatelessWidget {
           vertical: 10,
         ),
         child: Text(
-          '🅁 04/29/2019 (US) • 1h 49m Action, Adventure, Thriller, War',
+          '🅁 05/17/2019 (US) • 2h 11m • Action, Thriller, Crime',
           maxLines: 3,
           textAlign: TextAlign.center,
           style: TextStyle(
@@ -235,14 +235,14 @@ class _StaffWidget extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Stefano Sollina', style: staffStyle),
+                Text('Chad Stahelski', style: staffStyle),
                 Text('Director', style: jobTitleStyle),
               ],
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Stefano Sollina', style: staffStyle),
+                Text('Chad Stahelski', style: staffStyle),
                 Text('Director', style: jobTitleStyle),
               ],
             ),
@@ -258,19 +258,20 @@ class _StaffWidget extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Stefano Sollina', style: staffStyle),
+                Text('Chad Stahelski', style: staffStyle),
                 Text('Director', style: jobTitleStyle),
               ],
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Stefano Sollina', style: staffStyle),
+                Text('Chad Stahelski', style: staffStyle),
                 Text('Director', style: jobTitleStyle),
               ],
             ),
           ],
         ),
+        const SizedBox(height: 30,),
       ],
     );
   }
