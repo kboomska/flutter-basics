@@ -14,13 +14,13 @@ class RadialPercentWidget extends StatelessWidget {
 
   const RadialPercentWidget({
     super.key,
-    required this.child,
     required this.percent,
     required this.fillColor,
     required this.lineColor,
     required this.freeColor,
     required this.lineWidth,
     required this.linePadding,
+    required this.child,
   });
 
   @override
@@ -39,7 +39,7 @@ class RadialPercentWidget extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.all(25),
+          padding: const EdgeInsets.all(5),
           child: Center(child: child),
         ),
       ],
